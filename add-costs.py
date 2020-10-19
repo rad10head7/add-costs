@@ -2,7 +2,7 @@
 
 import os
 
-#function to add individual lines in file
+
 def add_costs():
 
     print("what is the file you would like to add?\nMake sure it is in the home directory")
@@ -18,16 +18,21 @@ def add_costs():
             add += line
         print("The total is:", add)
 
-#function to run as script
+    return add
+
+
+def write_to_file(answer):
+    
+
 def main():
+    cost = []
     test = int(input("How many files will you be testing?\n> "))
     while test >= 1:
-        add_costs()
+        new_cost = add_costs()
+        cost.append(new_cost)
         test -= 1
 
-    input("Press enter to exit")
+    do_file = input("Would you like to add the total(s) to a file? (y/n)\n>")
 
 if __name__ == "__main__":
     main()
-
-
