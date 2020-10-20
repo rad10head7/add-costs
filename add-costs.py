@@ -5,7 +5,7 @@ import os
 #function to add individual lines in file
 def add_costs():
 
-    print("what is the file you would like to add?\nMake sure it is in the home directory")
+    print("what is the file you would like to add?\nMake sure it is in the current working directory")
     thefile = input("> ")
     directory = os.getcwd()
     myfile = directory+'/'+thefile
