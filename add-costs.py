@@ -3,31 +3,53 @@
 import os
 
 #function to add individual lines in file
-def add_costs():
 
-    print("what is the file you would like to add?\nMake sure it is in the current working directory")
-    thefile = input("> ")
-    directory = os.getcwd()
-    myfile = directory+'/'+thefile
+totalFile = 'TOTAL_COSTS.txt'
+addedResults = 0.0
+
+def find_files(filename, search_path = '/'):
+   result = []
+
+   for root, dir, files in os.walk(search_path):
+      if filename in files:
+         result.append(os.path.join(root, filename))
+   return result
+
+def add_costs(file):
     add = 0.0
-
-
-    with open(myfile) as costs:
-        lines = [float(line.strip()) for line in costs]
-        for line in lines:
-            add += line
-        print("The total is:", add)
+    
+    myFiles = find_files(file)
+    for file in myFiles:
+        with open(file, 'r') as costs:
+            lines = [float(line.strip()) for line in costs]
+            for line in lines:
+                add += line
+                addedResults += add
 
 #function to run as script
 def main():
     test = int(input("How many files will you be testing?\n> "))
     while test >= 1:
-        add_costs()
+        file = input("file name ")
+        add_costs(file)
         test -= 1
 
-    input("Press enter to exit")
+    f = open(totalFile, 'a')
+    f.write(addedResults)
+    totalNumber = f.readline()
+    print('Here is the sum of all of your files: ' + totalNumber)
+    f.close()
+
+    fileDelete = input("Would you like to delete to the file with you total sum of values?
+    Y for yes or N for No?")
+
+    fileDelete.upper().strip()
+
+    if fileDelete == 'Y':
+        os.remove(totalFile)
+        input('File Deleted. Press Enter to exit.')
+    else:
+        input('Just press enter to exit program. THANKS!')
 
 if __name__ == "__main__":
     main()
-
-
