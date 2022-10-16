@@ -2,10 +2,10 @@
 
 import os
 
-#function to add individual lines in file
-
 totalFile = 'TOTAL_COSTS.txt'
 addedResults = 0.0
+
+# function to find files fo add
 
 def find_files(filename, search_path = '/'):
    result = []
@@ -15,6 +15,7 @@ def find_files(filename, search_path = '/'):
          result.append(os.path.join(root, filename))
    return result
 
+# function to add lines in files
 def add_costs(file):
     add = 0.0
     
